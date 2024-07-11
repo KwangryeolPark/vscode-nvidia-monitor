@@ -1,0 +1,63 @@
+{
+  "name": "vscode-nvidia-monitor",
+  "displayName": "VSCode Nvidia Monitor",
+  "description": "Displays Nvidia GPU information in the status bar",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.91.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Nvidia Monitor",
+      "properties": {
+        "nvidiaMonitor.updateInterval": {
+          "type": "number",
+          "default": 500,
+          "description": "The interval in milliseconds to refresh the GPU information"
+        },
+        "nvidiaMonitor.alignment": {
+          "type": "string",
+          "default": "left",
+          "enum": ["left", "right"],
+          "description": "The alignment of the GPU information in the status bar"
+        },
+        "nvidiaMonitor.temperature_unit": {
+          "type": "string",
+          "default": "°C",
+          "enum": ["°C", "°F"],
+          "description": "The unit to display the temperature in"
+        },
+        "nvidiaMonitor.memory_unit": {
+          "type": "string",
+          "default": "MiB",
+          "enum": ["MiB", "GiB"],
+          "description": "The unit to display the memory in"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.91.0",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.11.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0"
+  }
+}
